@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicare Plus</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/f14004ba61.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!--Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top">
+        <a class="navbar-brand" href="index.html">Medicare <i class="fas fa-plus-circle"></i></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav left">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Doctors <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Consult</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pharmacy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Diagnostics</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto nav-flex-icons">
+                <li class="nav-item" data-toggle="modal" data-target="#sign-up-modal">
+                  <a class="nav-link waves-effect waves-light">
+                    <i class="fas fa-user-plus"></i>
+                    Sign Up
+                  </a>
+                </li>
+                <li class="nav-item" data-toggle="modal" data-target="#sign-in-modal">
+                  <a class="nav-link waves-effect waves-light">
+                    <i class="fas fa-user"></i>
+                    Sign In
+                  </a>
+                </li>
+              </ul>
+        </div>
+    </nav>
+
+    <!--Sign Up Modal-->
+    <div class="modal fade" id="sign-up-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create Account</h5>
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label for="firstName">First Name <span style="color: rgb(158, 0, 0);">*</span></label>
+                                <input type="text" class="form-control" id="firstName" placeholder="Jane" required>
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="lastName">Last Name <span style="color: rgb(158, 0, 0);">*</span></label>
+                                <input type="text" class="form-control" id="lastName" placeholder="Doe" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label for="signUpInputEmail">Email <span style="color: rgb(158, 0, 0);">*</span></label>
+                                <input type="email" class="form-control" id="signUpInputEmail" placeholder="jane.doe@gmail.com" required>
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="signUpInputPassword">Password <span style="color: rgb(158, 0, 0);">*</span></label>
+                                <input type="password" class="form-control" id="signUpInputPassword" placeholder="********" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress">Address</label>
+                            <input type="text" class="form-control" id="inputAddress">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-4">
+                                <label for="inputCity">City <span style="color: rgb(158, 0, 0);">*</span></label>
+                                <input type="text" class="form-control" id="inputCity" required>
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="inputState">State <span style="color: rgb(158, 0, 0);">*</span></label>
+                                <select id="inputState" class="form-control" required>
+                                    <option>Delhi</option>
+                                    <option>Punjab</option>
+                                    <option>Haryana</option>
+                                    <option>Uttar Pradesh</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="inputZip">Zip Code <span style="color: rgb(158, 0, 0);">*</span></label>
+                                <input type="text" pattern="[0-9]{6}" class="form-control" id="inputZip" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn bg-teal">Sign up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Sign In Modal-->
+    <div class="modal fade" id="sign-in-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Sign In</h5>
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label for="inputEmail">Email <span style="color: rgb(158, 0, 0);">*</span></label>
+                                <input type="email" class="form-control" id="inputEmail"
+                                    placeholder="jane.doe@gmail.com" required>
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="inputPassword">Password <span style="color: rgb(158, 0, 0);">*</span></label>
+                                <input type="password" class="form-control" id="inputPassword" placeholder="********" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn bg-teal">Sign In</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="container p-0 m-0"> -->
+        <div id="my-carousel" class="carousel slide p-1" data-ride="carousel">
+    
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#my-carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#my-carousel" data-slide-to="1"></li>
+                <li data-target="#my-carousel" data-slide-to="2"></li>
+                <li data-target="#my-carousel" data-slide-to="3"></li>
+            </ol>
+        
+            <!-- The slideshow -->
+            <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active">
+                    <div class="image-container">
+                        <img class="d-block w-100" src="assets/doctors.jpg" alt="Doctors">
+                        <div class="mask" style="background-color: rgba(0, 0, 0, 0.6)"></div>
+                    </div>
+                    <div class="carousel-caption">
+                        <h3 class="h1">Doctors</h3>
+                        <p>Book an appointment with the best doctors near you.</p>
+                    </div>
+                </div>
+                
+                <div class="carousel-item">
+                    <div class="image-container">
+                        <img class="d-block w-100" src="assets/consult.jpg" alt="Consult">
+                        <div class="mask" style="background-color: rgba(0, 0, 0, 0.6)"></div>
+                    </div>
+                    <div class="carousel-caption">
+                        <h3 class="h1">Consult</h3>
+                        <p>Book online consultations with specialists.</p>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="image-container">
+                        <img class="d-block w-100" src="assets/doctors.jpg" alt="Consult">
+                        <div class="mask" style="background-color: rgba(0, 0, 0, 0.6)"></div>
+                    </div>
+                    <div class="carousel-caption">
+                        <h3 class="h1">Pharmacy</h3>
+                        <p>Order pharmaceuticals online and get them delivered at your doorstep.</p>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="image-container">
+                        <img class="d-block w-100" src="assets/diagnostic.jpg" alt="Diagnostics">
+                        <div class="mask" style="background-color: rgba(0, 0, 0, 0.6)"></div>
+                    </div>
+                    <div class="carousel-caption">
+                        <h1 >Diagnostics</h1>
+                        <p>Book home collection or a slot for a medical test.</p>
+                    </div>
+                </div>
+
+                
+               
+            </div>
+        
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#my-carousel" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#my-carousel" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+        
+        </div>    
+
+    <!-- </div> -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
