@@ -4,6 +4,9 @@ $('.left .nav-link').click(function(){
 });
 
 $('.card a').click(function(){
-    console.log($(this).attr("tgt"));
+    let target = $(this).attr("tgt");
+    $(".left .nav-link").filter(function() {
+        return ($(this).text() == target);
+    }).click();
 
 });

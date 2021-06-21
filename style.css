@@ -65,3 +65,7 @@ h1.display-4{
     height: 200px;
     object-fit: cover;
 }
+
+.card-body .card-text {
+    height: 15vh;
+}
