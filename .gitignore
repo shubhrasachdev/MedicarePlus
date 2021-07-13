@@ -116,5 +116,5 @@ dist
 .pnp.*
 
 # Credentials for API
-routes/credentials.json
-routes/token.json
+credentials.json
+token.json
