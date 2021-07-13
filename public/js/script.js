@@ -1,4 +1,5 @@
 $('.left .nav-link').click(function(){
+    if($(this) == $('.left .active')) return;
     $('.left .active').removeClass('active highlight');
     $(this).addClass('active highlight');
 });

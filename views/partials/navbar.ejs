@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top">
+    <a class="navbar-brand" href="/">Medicare <i class="fas fa-plus-circle"></i></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav left">
+            <li class="nav-item">
+                <a class="nav-link" href="/doctors">Doctors</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Consult</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Pharmacy</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Diagnostics</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+            <% if(!currentUser){ %> 
+                <li class="nav-item">
+                    <a class="nav-link waves-effect waves-light" href="/patients/register">
+                        <i class="fas fa-user-plus"></i>
+                        Sign Up
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-effect waves-light" href="/patients/login">
+                        <i class="fas fa-user"></i>
+                        Sign In
+                    </a>
+                </li>
+            <% } else { %>
+            <li class="nav-item">
+                <a class="nav-link waves-effect waves-light" href="/patients/logout">
+                    <i class="fas fa-user"></i>
+                    Logout
+                </a>
+            </li>
+            <% } %>
+        </ul>
+    </div>
+</nav>

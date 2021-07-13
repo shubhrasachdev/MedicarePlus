@@ -1,3 +1,4 @@
+
 body{
     padding-top: 56.35px;
 }
@@ -45,7 +46,7 @@ a {
 .modal { top: 13vh; }
 
 .jumbotron {
-    background-image: url('assets/bg.jpg');
+    background-image: url('../assets/bg.jpg');
     background-color: #0000009c;
     background-blend-mode:overlay;
     background-position:center;
@@ -68,4 +69,64 @@ h1.display-4{
 
 .card-body .card-text {
     height: 15vh;
+}
+
+.doc-card{
+    display: flex;
+    align-items: center;
+}
+
+.doc-img {
+    height: 15%;
+    width: 15%;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: invert(20%) sepia(15%) saturate(1177%) hue-rotate(141deg) brightness(89%) contrast(88%);
+}
+
+.doc-img img {
+    max-width: 102%;
+    max-height: 102%;    
+}
+
+.doc-card .doc-info {
+    width: 40%;
+}
+
+.doc-ratings {
+    display: flex;
+}
+
+.clip-star {
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.filled-star {
+    background: #ffcc00;
+}
+
+.unfilled-star {
+    background: lightgray;
+    border: 1px solid #253d41;
+}
+
+.doc-card .doc-book {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.doc-card .doc-slots {
+    width: 45%;
+    padding: 3px;
+}
+
+.doc-show .doc-info {
+    width: 30%;
 }

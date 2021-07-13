@@ -1,0 +1,33 @@
+<% layout('layouts/boilerplate') %>
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="star" viewBox="214.7 0 182.6 792"></symbol>
+</svg>
+<div class="justify-content-center">
+    <% for(let doctor of doctors){ %>
+        <div class="container mt-5 mb-5 p-1 doc-card">
+            <div class="circle doc-img ml-0">
+                <img src="../assets/doctors/1.png" alt="">
+            </div>
+            <div class="ml-5 doc-info">
+                <h4><%= "Dr. " + doctor.firstName + " " + doctor.lastName%></h4>
+                <h5><%= doctor.speciality %></h5>
+                <h6>Years of Experience: <%= doctor.yoe %></h6>
+                <p>
+                    <%= doctor.address + ", " + doctor.city + ", " + doctor.state + "-" + doctor.zipCode %>
+                </p>
+                <div class="doc-ratings">
+                    <% for(let i=0; i < doctor.rating; i++){ %>
+                        <div class="clip-star filled-star"></div>
+                        <% } %>
+                    <% for(let i=0; i < 5 - doctor.rating; i++){ %>
+                        <div class="clip-star unfilled-star"></div>
+                    <% } %>
+                </div>
+            </div>
+            <div class="ml-5 doc-book">
+                <a href="/doctors/<%= doctor._id %>/newAppointment" class="btn btn-md bg-sunglow mt-2">Book Appointment</a>
+                <a href="/doctors/<%= doctor._id %>/newConsult" class="btn btn-md bg-teal mt-2">Request Consultation</a> 
+            </div>
+        </div>
+    <% } %>
+</div>

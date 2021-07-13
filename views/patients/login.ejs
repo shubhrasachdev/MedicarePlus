@@ -1,0 +1,16 @@
+<% layout('layouts/boilerplate') %>
+<form action="/patients/login" method="POST" class="m-5">
+    <h3 class="display mb-4">Sign In</h3>
+    <div class="form-row mb-3">
+            <label for="inputUsername"> Username <span style="color: rgb(158, 0, 0);">*</span></label>
+            <input name="username" type="text" class="form-control" id="inputUsername"
+                placeholder="doe.jane" required>
+    </div>
+    <div class="form-row mb-3">
+        <label for="inputPassword">Password <span
+                style="color: rgb(158, 0, 0);">*</span></label>
+        <input name="password" type="password" class="form-control" id="inputPassword" placeholder="********"
+            required>
+    </div>
+    <button type="submit" class="form-row btn btn-lg bg-teal">Sign In</button>
+</form>

@@ -1,0 +1,58 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="mt-2 mb-5 p-1 doc-card doc-show">
+    <div class="circle doc-img">
+        <img src="../../assets/doctors/1.png" alt="">
+    </div>
+    <div class="ml-5 doc-info">
+        <h4><%= "Dr. " + doctor.firstName + " " + doctor.lastName%></h4>
+        <h5><%= doctor.speciality %></h5>
+        <h6>Years of Experience: <%= doctor.yoe %></h6>
+    </div>
+
+    <div class="doc-info">
+        <p><%= doctor.address %> <br><%= doctor.city + ", " + doctor.state + "-" + doctor.zipCode %></p>
+        <div class="doc-ratings">
+            <% for(let i=0; i < doctor.rating; i++){ %>
+                <div class="clip-star filled-star"></div>
+                <% } %>
+            <% for(let i=0; i < 5 - doctor.rating; i++){ %>
+                <div class="clip-star unfilled-star"></div>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+<form action="/doctors/<%= doctor._id %>/newAppointment" method="POST" >
+    <div class="form-group mb-1">
+        <label for="date">Pick a date: </label>
+        <% let today = new Date().toJSON().slice(0,10).split('-').join('-'); %>
+        <input class="form-control" type="date" id="appDate" name="date" min=<%= today %> value=<%= today %>>
+    </div>
+    <div class="form-group mb-1">
+        <label for="time">Pick a time: </label>
+        <select name="time" class="form-control" id="time">
+            <% for(let slot of doctor.availableSlots){ %> 
+            <option><%= slot[0] + slot[1] + ":" + slot[2] + slot[3] %></option>
+            <% } %>
+        </select>
+    </div> 
+    <div class="form-group">
+        <label for="symptoms">What symptoms are you experiencing? </label>
+        <textarea name="symptoms" class="form-control h-100" id="symptoms"></textarea> 
+    </div>
+    <div class="form-group">
+        <label for="type">Appointment Mode: </label><br>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="type" id="inlineRadio1" value="online" checked>
+            <label class="form-check-label" for="inlineRadio1">Online</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="type" id="inlineRadio2" value="in-clinic">
+            <label class="form-check-label" for="inlineRadio2">Offline</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <button class="btn bg-sunglow">Book Appointment</button>
+    </div>
+</form>
