@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicare Plus</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/f14004ba61.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="d-flex flex-column vh-100">
+    <%- include('partials/navbar') %>
+    <div class="container mt-3">
+        <%- include('partials/flash') %>
+        <main role="main" class="container mt-3">
+            <section>
+                <div class="mb-5">
+                    <h4 class="display-4 mb-3" style="font-size: 3rem;"><strong>What is Breast Cancer?</strong></h4>
+                    <p class="lead text-justify" style="font-weight: 400;">Breast cancer is cancer that forms in the cells of the breasts. Breast cancer can occur in both men and women, but it's far more common in women. Breast cancer survival rates have increased, and the number of deaths associated with this disease is steadily declining, largely due to factors such as earlier detection, a new personalized approach to treatment and a better understanding of the disease.
+                    </p>
+                </div>
+                               
+                <!-- CARDS -->
+                <div class="card-deck mb-5">
+                    <!-- card 1 -->
+                    <div class="card" style="background-color: #253d41; color: white;">
+                        <div class="card-header p-3" style="background-color: #17282b; text-align: center;">
+                            <h5 class="card-title display-4 m-0" style="font-size: 2rem; font-weight: 400;">Symptoms</h5>
+                        </div>
+                      <div class="card-body">
+                            <ul class="list-group" style="background-color: #2f4a4e;">
+                                <li class="list-group-item" style="background-color: #2f4a4e; height: 150px;" > <em class="display-4" style="font-size: 1.5rem; font-weight: 400;">Breast Lump</em><br><p class="lead text-justify">A breast lump or thickening that feels different from the surrounding tissue.</p></li>
+                                <li class="list-group-item" style="background-color: #2f4a4e; height: 150px;" > <em class="display-4" style="font-size: 1.5rem; font-weight: 400;">Change in breast</em><br><p class="lead text-justify">Change in the size, shape or appearance of a breast.</p></li>
+                                <li class="list-group-item" style="background-color: #2f4a4e; height: 150px;"> <em class="display-4" style="font-size: 1.5rem; font-weight: 400;">Change in nipple</em><br><p class="lead text-justify">A newly inverted nipple.</p></li>
+                                <li class="list-group-item" style="background-color: #2f4a4e; height: 150px;"> <em class="display-4" style="font-size: 1.5rem; font-weight: 400;">Skin change</em><br><p class="lead text-justify">Peeling, scaling, crusting or flaking of the pigmented area of areolar or breast skin.</p></li>
+                                <li class="list-group-item" style="background-color: #2f4a4e; height: 150px;"> <em class="display-4" style="font-size: 1.5rem; font-weight: 400;">Change in skin colour</em><br><p class="lead text-justify">Redness or pitting of the skin over your breast, like the skin of an orange.</p></li>
+                            </ul>
+                      </div>
+                    </div>
+                    <!-- card 2 -->
+                    <div class="card" style="background-color: #ffd83b; color: black;">
+                        <div class="card-header p-3" style="background-color: #ffcc00; color: black; text-align: center;">
+                            <h5 class="card-title display-4 m-0" style="font-size: 2rem; font-weight: 400;">Prevention</h5>
+                        </div>
+                        <div class="card-body">
+                    <ul  class="list-group " style="background-color: #ffcc00;">
+                        <li class="list-group-item" style="background-color: #ffde59; color: black; height: 150px;"><em class="display-4" style="font-size: 1.5rem; font-weight: 400;">Ask about screening</em><br><p class="lead text-justify">Discuss with your doctor about screening tests like the clinical breast exams.</p></li>
+                        <li class="list-group-item" style="background-color: #ffde59; color: black; height: 150px;"><em class="display-4" style="font-size: 1.5rem; font-weight: 400;">Self-exam</em><br><p class="lead text-justify">Inspect your breasts occasionally during a self-exam for awareness.</p></li>
+                        <li class="list-group-item" style="background-color: #ffde59; color: black; height: 150px;"><em class="display-4" style="font-size: 1.5rem; font-weight: 400;">Alcohol Moderation</em><br><p class="lead text-justify">Limit the amount of alcohol you drink.</p></li>
+                        <li class="list-group-item" style="background-color: #ffde59; color: black; height: 150px;"><em class="display-4" style="font-size: 1.5rem; font-weight: 400;">Exercise</em><br><p class="lead text-justify">Aim for at least 30 minutes of exercise on most days of the week.</p></li>
+                        <li class="list-group-item" style="background-color: #ffde59; color: black; height: 150px;"><em class="display-4" style="font-size: 1.5rem; font-weight: 400;">Maintain a healthy weight</em><br><p class="lead text-justify">Maintain a healthy weight and choose a healthy diet.</p></li>
+                    </ul>
+                    </div>
+                    </div>
+        
+                    <!-- card 3 -->
+                    <div class="card" style="background-color: #253d41; color: white;">
+                        <div class="card-header p-3" style="background-color: #17282b; text-align:  center;">
+                            <h5 class="card-title display-4 m-0" style="font-size: 2rem; font-weight: 400;">Risk factors</h5>
+                        </div>
+                      <div class="card-body">
+                            <ul class="list-group" style="background-color: #2f4a4e;">
+                                <li class="list-group-item" style="background-color: #2f4a4e; height: 150px;"><em class="display-4" style="font-size: 1.5rem; font-weight: 400;">Being female</em><br><p class="lead text-justify">Women are much more likely than men are to develop breast cancer.</p></li>
+                                <li class="list-group-item" style="background-color: #2f4a4e; height: 150px;"><em class="display-4" style="font-size: 1.5rem; font-weight: 400;">Increasing age</em><br><p class="lead text-justify">Your risk of breast cancer increases as you age.</p></li>
+                                <li class="list-group-item" style="background-color: #2f4a4e; height: 150px;"><em class="display-4" style="font-size: 1.5rem; font-weight: 400;">Obesity</em><br><p class="lead text-justify">Being obese increases your risk of breast cancer.</p></li>
+                                <li class="list-group-item" style="background-color: #2f4a4e; height: 150px;"><em class="display-4" style="font-size: 1.5rem; font-weight: 400;">Drinking alcohol</em><br><p class="lead text-justify">Drinking alcohol increases the risk of breast cancer.</p></li>
+                                <li class="list-group-item" style="background-color: #2f4a4e; height: 150px;"><em class="display-4" style="font-size: 1.5rem; font-weight: 400;">Personal History</em><br><p class="lead text-justify">If you've had breast cancer in one breast, you have an increased risk.</p></li>
+                            </ul>
+                      </div>
+                    </div>
+                
+        
+                  </div>
+                
+                <div class="mb-5">
+                    <h4 class="display-4" style="font-size: 3rem;"><strong>When to see a doctor?</strong></h4>
+                    <p class="lead text-justify" style="font-weight: 400;"> Talk to your doctor if you notice any kind of lump in your breast or armpit. Get medical care as soon as possible if you also have signs of an infection such as redness, swelling, or discharge. If you find a lump or other change in your breast — even if a recent mammogram was normal — make an appointment with your doctor for prompt evaluation. You can also utilize our in-house tool to evaluate your risk for breast cancer, and in case of a legitimate concern, book yourself an appointment.
+                    </p> 
+                </div>
+            </section>
+            <section class="tool mb-5">
+                <h4 class="mb-3 display-4" style="font-size: 3rem;"><strong>Breast Cancer Detection Tool</strong></h4>
+                <p class="lead">Try our tool that checks if you may have breast cancer using histopathological test images.</p>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="progress progress-bar progress-bar-striped progress-bar-animated mb-2">
+                            Loading Model
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <input id="image-selector" class="form-control border-0" type="file" />
+                    </div>
+                    <div class="col-6">
+                        <button id="predictBtn" class="btn bg-teal float-right">
+                            Predict
+                        </button>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-6">
+                        <h4 class="ml-3 lead"><strong>Image</strong></h4>
+                        <img id="selected-image" class="ml-3"  width="300" alt="" />
+                    </div>
+                    <div class="col-6">
+                        <h4 class="ml-3 mb-2 lead"><strong>Predictions</strong></h4>
+                        <div class="ml-3" id="prediction-output">
+                            
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+    <script src="/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
+    <script src="/js/classifier.js"></script>
+</body>
+</html>
+    
+    

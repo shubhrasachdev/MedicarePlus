@@ -130,3 +130,10 @@ h1.display-4{
 .doc-show .doc-info {
     width: 30%;
 }
+
+.tool {
+    height: 75vh;
+    padding: 1.5rem;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.425) 0px 1px 4px;
+}

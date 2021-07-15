@@ -1,5 +1,5 @@
 <% layout('layouts/boilerplate') %>
-
+<% let {doctor, isConsult} = data %>
 <div class="mt-2 mb-5 p-1 doc-card doc-show">
     <div class="circle doc-img">
         <img src="../../assets/doctors/1.png" alt="">
@@ -23,36 +23,59 @@
     </div>
 </div>
 
-<form action="/doctors/<%= doctor._id %>/newAppointment" method="POST" >
-    <div class="form-group mb-1">
-        <label for="date">Pick a date: </label>
-        <% let today = new Date().toJSON().slice(0,10).split('-').join('-'); %>
-        <input class="form-control" type="date" id="appDate" name="date" min=<%= today %> value=<%= today %>>
-    </div>
-    <div class="form-group mb-1">
-        <label for="time">Pick a time: </label>
-        <select name="time" class="form-control" id="time">
-            <% for(let slot of doctor.availableSlots){ %> 
-            <option><%= slot[0] + slot[1] + ":" + slot[2] + slot[3] %></option>
-            <% } %>
-        </select>
-    </div> 
+<form action="/doctors/<%= doctor._id %>/<%= isConsult ? "newConsult" : "newAppointment" %>" method="POST" >
+    <% if(!isConsult){ %>
+        <div class="form-group mb-1">
+            <label for="date">Pick a date: </label>
+            <% let today = new Date().toJSON().slice(0,10).split('-').join('-'); %>
+            <input class="form-control" type="date" id="appDate" name="date" min=<%= today %> value=<%= today %>>
+        </div>
+        <div class="form-group mb-1">
+            <label for="time">Pick a time: </label>
+            <select name="time" class="form-control" id="time">
+                <%let slots = [ "0900", "0930", "1000", "1030", "1100", "1130", "1200", "1230", "1300", "1330", "1400", "1430", "1500", "1530", "1600", "1630", "1700", "1730", "1800", "1830", "1900", "1930", "2000", "2030" ]; %>
+                <% for(let slot of slots){ %> 
+                <option><%= slot[0] + slot[1] + ":" + slot[2] + slot[3] %></option>
+                <% } %>
+            </select>
+        </div> 
+    <% } else { %>
+        <div class="row mb-3">
+            <div class="col-4">
+                <label for="name">Your Name: </label>
+                <input type="text" id="name" name="name" class="form-control" required>
+            </div>
+            <div class="col-4">
+                <label for="phone">Your Phone Number: </label>
+                <div class="input-group-prepend h-1">
+                    <div class="input-group-text py-0 my-0">+91</div>
+                    <input type="tel" id="phone" name="phone" class="form-control">
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="email">Your Email Address: </label>
+                <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+        </div> 
+    <% } %>
     <div class="form-group">
         <label for="symptoms">What symptoms are you experiencing? </label>
         <textarea name="symptoms" class="form-control h-100" id="symptoms"></textarea> 
     </div>
-    <div class="form-group">
-        <label for="type">Appointment Mode: </label><br>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="type" id="inlineRadio1" value="online" checked>
-            <label class="form-check-label" for="inlineRadio1">Online</label>
+    <% if(!isConsult){ %>
+        <div class="form-group">
+            <label for="type">Appointment Mode: </label><br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="type" id="inlineRadio1" value="online" checked>
+                <label class="form-check-label" for="inlineRadio1">Online</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="type" id="inlineRadio2" value="in-clinic">
+                <label class="form-check-label" for="inlineRadio2">Offline</label>
+            </div>
         </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="type" id="inlineRadio2" value="in-clinic">
-            <label class="form-check-label" for="inlineRadio2">Offline</label>
-        </div>
-    </div>
+    <% } %>
     <div class="form-group">
-        <button class="btn bg-sunglow">Book Appointment</button>
+        <button class="btn bg-sunglow"><%= isConsult ? "Request Consult" : "Book Appointment" %></button>
     </div>
 </form>

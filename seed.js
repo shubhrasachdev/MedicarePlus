@@ -20,7 +20,7 @@ var seedDoctors = [
         address: "E-214, Paschim Vihar",
         city: "New Delhi",
         state: "Delhi",
-        zipCode: 110078,
+        zipCode: 110063,
         speciality: "Oncologist",
         yoe: 13,
         rating: 4
@@ -43,7 +43,7 @@ var seedDoctors = [
         lastName: "Arora",
         image: "assets/doctors/3.png",
         email: "shubhra99sachdev@gmail.com",
-        address: "F-21, Mayur Vihar",
+        address: "A/21, Mayur Vihar Phase 1",
         city: "New Delhi",
         state: "Delhi",
         zipCode: 110091,
@@ -55,7 +55,7 @@ var seedDoctors = [
         firstName: "Sreenithi", 
         lastName: "Srivastav",
         image: "assets/doctors/3.png",
-        email: "sneedhi13@gmail.com",
+        email: "shubhra99sachdev@protonmail.ch",
         address: "F-21, Mayur Vihar",
         city: "New Delhi",
         state: "Delhi",
@@ -63,13 +63,37 @@ var seedDoctors = [
         speciality: "Oncologist",
         yoe: 4,
         rating: 5
+    },
+    {
+        firstName: "Samvat", 
+        lastName: "Kumar",
+        image: "assets/doctors/3.png",
+        email: "sabby2999@gmail.com",
+        address: "G-2, Mansarovar Garden",
+        city: "New Delhi",
+        state: "Delhi",
+        zipCode: 110015,
+        speciality: "Oncologist",
+        yoe: 15,
+        rating: 3
+    },
+    {
+        firstName: "Yuga", 
+        lastName: "Talwar",
+        image: "assets/doctors/3.png",
+        email: "yashikasharma2021@gmail.com",
+        address: "AZ-13, Rohini Sector 15",
+        city: "New Delhi",
+        state: "Delhi",
+        zipCode: 110089,
+        speciality: "Oncologist",
+        yoe: 5,
+        rating: 2
     }
 ];
 
 async function addData() {
     await Doctor.insertMany(seedDoctors);
-    // await Patient.insertMany(seedPatients);
-    // await Appointment.insertMany(seedAppointments);
     console.log("Added seed data.")
 }
 

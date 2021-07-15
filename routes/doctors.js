@@ -1,4 +1,6 @@
 const express = require('express');
+const nodemailer = require('nodemailer');
+require('dotenv').config({ debug: process.env.DEBUG });
 const router = express.Router();
 const {isLoggedIn} = require('../middleware');
 const Doctor = require('../models/doctor');
@@ -20,46 +22,6 @@ const token = fs.readFileSync('token.json');
 auth.setCredentials(JSON.parse(token));
 let calendar = google.calendar({ version: 'v3', auth });
 let meetingLink = "";
-
-router.get('/', async (req, res) => {
-    const doctors = await Doctor.find({});
-    res.render("doctors/index", {doctors});
-});
-
-router.get('/:id/newAppointment', async (req, res) => {
-    const doctor = await Doctor.findById(req.params.id);
-    res.render("doctors/show", {doctor});
-});
-
-router.post('/:id/newAppointment', isLoggedIn, async (req, res) => {
-    meetingLink = "";
-    const doctorId = req.params.id;
-    const patientId = req.user._id;
-    const doctor = await Doctor.findById(doctorId);
-    const {date, time, symptoms, type} = req.body;
-    const isOnline = type === "online";
-    const {startDateTime, endDateTime} = getStartEndDateTime(date, time);
-    await createCalendarEvent(startDateTime, endDateTime, symptoms, [doctor, req.user], isOnline);
-    const newAppointment = new Appointment({
-        date: date,
-        time: time,
-        doctorId: doctorId,
-        patientId: patientId,
-        symptoms: symptoms,
-        isOnline: isOnline,
-        meetingLink: meetingLink
-    });
-    console.log(newAppointment);
-    await newAppointment.save();
-    await Doctor.updateOne({_id: doctorId}, {$push: {appointments: newAppointment._id }});
-    await Patient.updateOne({_id: patientId}, {$push: {appointments: newAppointment._id }});
-    res.redirect("../");
-});
-
-router.get('/:id/newConsult', isLoggedIn, async (req, res) => {
-    res.send("YAHA CONSULT KA FORM AAEGA!!!")
-});
-
 
 function dateString(d){
     function pad(n) {
@@ -124,5 +86,88 @@ async function createCalendarEvent(start, end, symptoms, attendees, isOnline) {
     });
     meetingLink = resp.data.hangoutLink;
 }
+
+router.get('/', async (req, res) => {
+    const doctors = await Doctor.find({});
+    res.render("doctors/index", {doctors});
+});
+
+router.get('/:id/newAppointment', async (req, res) => {
+    const doctor = await Doctor.findById(req.params.id);
+    res.render("doctors/show", {data: {doctor: doctor, isConsult: false}});
+});
+
+router.post('/:id/newAppointment', isLoggedIn, async (req, res) => {
+    meetingLink = "";
+    const doctorId = req.params.id;
+    const patientId = req.user._id;
+    const doctor = await Doctor.findById(doctorId);
+    const {date, time, symptoms, type} = req.body;
+    const isOnline = type === "online";
+    const {startDateTime, endDateTime} = getStartEndDateTime(date, time);
+    await createCalendarEvent(startDateTime, endDateTime, symptoms, [doctor, req.user], isOnline);
+    const newAppointment = new Appointment({
+        date: date,
+        time: time,
+        doctorId: doctorId,
+        patientId: patientId,
+        symptoms: symptoms,
+        isOnline: isOnline,
+        meetingLink: meetingLink
+    });
+    console.log(newAppointment);
+    await newAppointment.save();
+    await Doctor.updateOne({_id: doctorId}, {$push: {appointments: newAppointment._id }});
+    await Patient.updateOne({_id: patientId}, {$push: {appointments: newAppointment._id }});
+    req.flash("Appointment created successfully, please accept the calendar invite.");
+    res.redirect("/" + doctorId + "/newAppointment");
+});
+
+
+
+router.get('/:id/newConsult', async (req, res) => {
+    const doctor = await Doctor.findById(req.params.id);
+    res.render("doctors/show", {data: {doctor: doctor, isConsult: true}});
+});
+
+router.post('/:id/newConsult', async (req, res) => {
+    const doctor = await Doctor.findById(req.params.id);
+    const {name, phone, email, symptoms} = req.body;
+    const docEmail = doctor.email;
+    let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            type: 'OAuth2',
+            user: process.env.MAIL_USERNAME,
+            pass: process.env.MAIL_PASSWORD,
+            clientId: process.env.OAUTH_CLIENTID,
+            clientSecret: process.env.OAUTH_CLIENT_SECRET,
+            refreshToken: process.env.OAUTH_REFRESH_TOKEN
+        }
+    });
+    let emailString = 'A consultation request has been created for Dr. ' + doctor.lastName + ". \nPlease find below details for the consultation: \n\n";
+    emailString += "Patient Name: " + name + "\n";
+    emailString += "Patient Email: " + email + "\n";
+    emailString += (phone == undefined ? "" : "Patient Phone Number: +91-" + phone + "\n");
+    emailString += (symptoms == undefined ? "" : "Symptoms: " + symptoms);
+    let recepients = email + ", " + docEmail;
+
+    let mailOptions = {
+        from: process.env.MAIL_USERNAME,
+        to: recepients,
+        subject: 'Consultation Request',
+        text: emailString
+    };
+      
+    await transporter.sendMail(mailOptions, function(error, info){
+        if (err) {
+          console.log(error);
+        } else {
+           console.log('Email sent: ' + info.response);
+        }
+    });
+    req.flash("success", "Consultation Request Created!");
+    res.redirect("/");
+});
 
 module.exports = router;

@@ -1,0 +1,28 @@
+<% layout('layouts/boilerplate') %>
+<form action="/consults" method="POST" class="m-5">
+    <h3 class="display mb-4">Request Consultation from our Medical Professionals. </h3>
+    <div class="row mb-3">
+        <div class="col-4">
+            <label for="name">Your Name: </label>
+            <input type="text" id="name" name="name" class="form-control" required>
+        </div>
+        <div class="col-4">
+            <label for="phone">Your Phone Number: </label>
+            <div class="input-group-prepend h-1">
+                <div class="input-group-text py-0 my-0">+91</div>
+                <input type="tel" id="phone" name="phone" class="form-control" required>
+            </div>
+        </div>
+        <div class="col-4">
+            <label for="email">Your Email Address: </label>
+            <input type="email" id="email" name="email" class="form-control" required>
+        </div>
+    </div> 
+    <div class="form-group">
+        <label for="symptoms">What symptoms are you experiencing? </label>
+        <textarea name="symptoms" class="form-control h-100" id="symptoms"></textarea> 
+    </div>
+    <div class="form-group">
+        <button class="btn bg-sunglow">Request Consult</button>
+    </div>
+</form>

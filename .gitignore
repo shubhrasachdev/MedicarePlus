@@ -118,3 +118,6 @@ dist
 # Credentials for API
 credentials.json
 token.json
+
+# Image Classification Dir
+ImageClassifier/

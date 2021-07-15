@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const {isLoggedIn} = require('../middleware');
+
 const Patient = require('../models/patient');
 
 router.get('/register', (req, res) => {
@@ -40,5 +42,9 @@ router.get('/logout', (req, res) => {
     req.flash('success', "Successfully logged out.")
     res.redirect('../');
 });
+
+// router.get('/profile', (req, res) => {
+//     res.render('patients/profile');
+// })
 
 module.exports = router;

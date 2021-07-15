@@ -14,6 +14,8 @@ const Appointment = require('./models/appointment');
 const doctors = require('./routes/doctors');
 const patients = require('./routes/patients');
 const appointments = require('./routes/appointments');
+const consults = require('./routes/consults');
+const diagnostics = require('./routes/diagnostics');
 
 mongoose.connect('mongodb://localhost:27017/medicarePlus', {
     useNewUrlParser: true, 
@@ -65,15 +67,19 @@ app.use((req, res, next) => {
 app.use('/doctors', doctors);
 app.use('/patients', patients);
 app.use('/appointments', appointments);
-
-
+app.use('/consults', consults);
+app.use('/diagnostics', diagnostics);
 
 app.get('/', (req, res) => {
     res.render("index");
 });
 
+app.get('/about', (req, res) => {
+    res.render("about");
+});
+
 app.get('*', (req, res) => {
-    res.render('index.ejs');
+    res.render('index');
 });
 
 app.listen(3000, () => {
