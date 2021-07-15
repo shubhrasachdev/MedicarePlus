@@ -109,18 +109,16 @@ router.post('/:id/newAppointment', isLoggedIn, async (req, res) => {
     const newAppointment = new Appointment({
         date: date,
         time: time,
-        doctorId: doctorId,
-        patientId: patientId,
+        doctor: doctor,
+        patient: req.user,
         symptoms: symptoms,
         isOnline: isOnline,
         meetingLink: meetingLink
     });
     console.log(newAppointment);
     await newAppointment.save();
-    await Doctor.updateOne({_id: doctorId}, {$push: {appointments: newAppointment._id }});
-    await Patient.updateOne({_id: patientId}, {$push: {appointments: newAppointment._id }});
-    req.flash("Appointment created successfully, please accept the calendar invite.");
-    res.redirect("/" + doctorId + "/newAppointment");
+    req.flash("success", "Appointment created successfully, please accept the calendar invite.");
+    res.redirect("/doctors");
 });
 
 
@@ -167,7 +165,7 @@ router.post('/:id/newConsult', async (req, res) => {
         }
     });
     req.flash("success", "Consultation Request Created!");
-    res.redirect("/");
+    res.redirect("/doctors");
 });
 
 module.exports = router;

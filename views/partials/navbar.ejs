@@ -13,7 +13,7 @@
                 <a class="nav-link" href="/consults">Consult</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Pharmacy</a>
+                <a class="nav-link" href="/pharmacy">Pharmacy</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/diagnostics">Diagnostics</a>
@@ -34,12 +34,22 @@
                     </a>
                 </li>
             <% } else { %>
-            <li class="nav-item">
-                <a class="nav-link waves-effect waves-light" href="/patients/logout">
-                    <i class="fas fa-user"></i>
-                    Logout
-                </a>
-            </li>
+                <li class="nav-item float-right">
+                    <a class="nav-link waves-effect waves-light" href="/cart">
+                        <i class="fa fa-shopping-cart"></i> Cart 
+                        <span class="badge mr-2" style="border: 2px solid grey;"><%= session.cart != undefined ? session.cart.totalQty : 0%></span>
+                    </a>
+                </li>
+                <li class="nav-item float-right">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user"></i>
+                        Hello, <%= currentUser.firstName %>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right mr-2" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/patients/profile">My Profile</a>
+                        <a class="dropdown-item" href="/patients/logout">Logout</a>
+                    </div>
+                </li>
             <% } %>
         </ul>
     </div>

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const Doctor = require('./models/doctor');
-const Patient = require('./models/patient');
-const Appointment = require('./models/appointment');
+const Doctor = require('../models/doctor');
+const Patient = require('../models/patient');
+const Appointment = require('../models/appointment');
 
 mongoose.connect('mongodb://localhost:27017/medicarePlus', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})
     .then(() => {

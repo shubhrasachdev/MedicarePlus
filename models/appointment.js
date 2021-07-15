@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 appointmentSchema = new Schema({
     date: String,
     time: String,
-    doctorId: {
+    doctor: {
         type: Schema.Types.ObjectId,
         ref: 'Doctor'
     },
-    patientId: {
+    patient: {
         type: Schema.Types.ObjectId,
         ref: 'Patient'
     },

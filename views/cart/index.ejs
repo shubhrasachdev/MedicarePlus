@@ -1,0 +1,58 @@
+<% layout('layouts/boilerplate') %>
+<div class="container m-5">
+    <h3 class="display-4 mb-4"><strong>My Cart</strong></h3>
+    <% if(products){ %> 
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col-3" class="text-center">Product</th>
+                                <th scope="col-2" class="text-right">Quantity</th>
+                                <th scope="col-2" class="text-right">Price</th>
+                                <th scope="col-2" class="text-right"></th>
+                                <th scope="col-1" class="text-right"></th>
+                                <th scope="col-1" class="text-right"></th>
+                                <th scope="col-1" class="text-right"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(let product of products){ %> 
+                                <tr>
+                                    <td><%= product.item.title %></td>
+                                    <td class="text-right"><%= product.qty %></td>
+                                    <td class="text-right"><i class="fa fa-inr fa-sm" aria-hidden="true"></i> <%= product.price %></td>
+                                    <td></td>
+                                    <td class="text-right py-0"></td>
+                                    <td class="text-right py-0">
+                                        <a href="/cart/add/<%= product.item._id %>" class="btn btn-lg"><i class="fa fa-plus-circle"></i></a>
+                                        <a href="/cart/remove/<%= product.item._id %>" class="btn btn-lg"><i class="fa fa-minus-circle" ></i></a>
+                                        <a href="/cart/delete/<%= product.item._id %>" class="btn btn-lg"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                    <td class="text-right py-0"></td>
+                
+                                </tr>
+                            <% } %>
+                            <tr>
+                                <td></td>
+                                <td class="text-right"><strong>Total</strong></td>
+                                <td class="text-right"><strong><i class="fa fa-inr fa-sm" aria-hidden="true"></i> <%= totalPrice %></strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col mb-2">
+                <div class="row">
+                    <div class="col-4 text-right">
+                        <a class="btn btn-lg btn-block bg-teal text-uppercase" href="/cart/checkout">Checkout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% } else { %> 
+        <h4 class="display-4" style="font-size: 1.85rem;">No Items in Cart.</h4>
+    <% } %> 
+</div>
+

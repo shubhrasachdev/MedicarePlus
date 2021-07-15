@@ -1,20 +1,15 @@
 const express = require('express');
 const router = express.Router();
+const Product = require("../models/product");
+const Cart = require("../models/cart");
+const {isLoggedIn} = require('../middleware');
 
-router.get('/', (req, res) => {
-    res.render('diagnostics/index');
+router.get('/', async (req, res) => {
+    const products = await Product.find({"type": "diag"});
+    let productChunks = [];
+    let chunkSize = 3;
+    for(let i = 0; i < products.length; i+= chunkSize) productChunks.push(products.slice(i, i + chunkSize));
+    res.render('diagnostics/index', {productChunks});
 });
-
-router.get('/testing', (req, res) => {
-    if(req.user.cart == undefined) req.user.cart = ["ITEM 1"];
-    else {
-        req.user.cart.push("Another ITEM.");
-    }
-    res.send("I ADDED AN ITEM!!!!");
-});
-
-router.get('/cart', (req, res) => {
-    res.send("Current cart : " + req.user.cart);
-})
 
 module.exports = router;

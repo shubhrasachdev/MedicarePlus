@@ -27,7 +27,11 @@
     <% if(!isConsult){ %>
         <div class="form-group mb-1">
             <label for="date">Pick a date: </label>
-            <% let today = new Date().toJSON().slice(0,10).split('-').join('-'); %>
+            <% 
+                let today = new Date();
+                today.setDate(today.getDate() + 1)
+                today = today.toJSON().slice(0,10).split('-').join('-');
+            %>
             <input class="form-control" type="date" id="appDate" name="date" min=<%= today %> value=<%= today %>>
         </div>
         <div class="form-group mb-1">

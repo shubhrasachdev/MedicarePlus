@@ -2,10 +2,12 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
+const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
+const MongoStore = require('connect-mongo');
 
 const Doctor = require('./models/doctor');
 const Patient = require('./models/patient');
@@ -16,6 +18,8 @@ const patients = require('./routes/patients');
 const appointments = require('./routes/appointments');
 const consults = require('./routes/consults');
 const diagnostics = require('./routes/diagnostics');
+const pharmacy = require('./routes/pharmacy');
+const cart = require('./routes/cart');
 
 mongoose.connect('mongodb://localhost:27017/medicarePlus', {
     useNewUrlParser: true, 
@@ -37,17 +41,20 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, "/views"));
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, "/public")));
+app.use(cookieParser());
 
 const sessionConfig = {
     secret: "abcde",
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
+    store: MongoStore.create({
+        mongoUrl: "mongodb://localhost:27017/medicarePlus"
+    }),
     cookie: {
-        httpOnly: true,
-        expires: Date.now() + 1000 * 60 * 60 * 24 * 7, // week
-        maxAge: 1000 * 60 * 60 * 24 * 7,
+        maxAge: 180 * 60 * 1000
     }
 }
+
 app.use(session(sessionConfig));
 app.use(flash());
 
@@ -61,6 +68,7 @@ app.use((req, res, next) => {
     res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
+    res.locals.session = req.session;
     next();
 });
 
@@ -69,6 +77,8 @@ app.use('/patients', patients);
 app.use('/appointments', appointments);
 app.use('/consults', consults);
 app.use('/diagnostics', diagnostics);
+app.use('/pharmacy', pharmacy);
+app.use('/cart', cart);
 
 app.get('/', (req, res) => {
     res.render("index");

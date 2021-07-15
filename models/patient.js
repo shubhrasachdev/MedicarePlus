@@ -9,13 +9,7 @@ patientSchema = new Schema({
     address: String,
     city: String,
     state: String,
-    zipCode: Number,
-    appointments: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Appointment'
-        }
-    ]
+    zipCode: Number
 });
 
 patientSchema.plugin(passportLocalMongoose)

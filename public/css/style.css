@@ -137,3 +137,11 @@ h1.display-4{
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.425) 0px 1px 4px;
 }
+
+.product-col {
+    box-shadow: rgba(0, 0, 0, 0.425) 0px 1px 4px;
+}
+
+.product-col:hover {
+    cursor: pointer;
+}

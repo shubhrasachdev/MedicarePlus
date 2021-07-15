@@ -1,0 +1,29 @@
+<% layout('layouts/boilerplate') %>
+<div class="products container mt-5">
+    <div class="header mb-5">
+        <h4 class="display-4" style="font-size: 3rem;"><strong>Order Pharmaceuticals Online: </strong></h4>
+        <p class="lead">Some commonly ordered pharmaceutical drugs for patients suffering from breast cancer. Please refer a physician's prescription before ordering.</p>
+    </div>
+    <% for(let productArr of productChunks){ %> 
+        <div class="row mx-0 mb-5 d-flex justify-content-evenly ml-5">
+            <% for(let product of productArr){ %>
+                <div class="col-3 product-col m-4" style="width: 2rem;">
+                    <div class="thumbnail mb-3">
+                        <img src=<%= product.image %> class="img-responsive mb-2" style="height: 30%; width: 100%;">
+                        <div class="caption mb-3" style="height: 275px;">
+                            <h3><%= product.title %></h3>
+                            <p class="description text-justify lead"><%= product.description %></p>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            <div class="price lead"><strong>Rs. <%= product.price %></strong></div>
+                            <a href="/cart/add/<%= product._id %>" class="btn bg-sunglow float-right">Order Now</a>
+                        </div>
+                    </div>
+                </div>
+            <% } %> 
+        </div>
+
+    <% } %>
+
+</div>

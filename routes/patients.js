@@ -4,6 +4,9 @@ const passport = require('passport');
 const {isLoggedIn} = require('../middleware');
 
 const Patient = require('../models/patient');
+const Cart = require('../models/cart');
+const Appointment = require('../models/appointment');
+const Order = require('../models/order');
 
 router.get('/register', (req, res) => {
     res.render('patients/register');
@@ -40,11 +43,18 @@ router.post('/login', passport.authenticate('local', {failureFlash: true, failur
 router.get('/logout', (req, res) => {
     req.logout();
     req.flash('success', "Successfully logged out.")
-    res.redirect('../');
+    res.redirect('/');
 });
 
-// router.get('/profile', (req, res) => {
-//     res.render('patients/profile');
-// })
+router.get('/profile', async (req, res) => {
+    const orders = await Order.find({user: req.user});
+    const appointments = await Appointment.find({patient: req.user}).populate('doctor');
+    console.log(appointments);
+    orders.forEach(function(order) {
+        let cart = new Cart(order.cart);
+        order.items = cart.generateArray();
+    });
+    res.render('patients/profile', {orders: orders, appointments: appointments});
+})
 
 module.exports = router;

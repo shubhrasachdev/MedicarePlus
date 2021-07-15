@@ -1,0 +1,81 @@
+<% layout('layouts/boilerplate') %>
+<div class="container m-5">
+    <div class="header mb-4">
+        <h4 class="display-4" style="font-size: 3rem;"><strong>My Profile </strong></h4>
+        <hr>
+    </div>
+    <div class="container">
+        <div class="mb-4">
+            <h5 class="display-4" style="font-size: 2rem;"><strong>My Appointments </strong></h5>
+            <hr>
+        </div>
+        <table class="table table-hover mb-5">
+            <thead>
+                <tr class="bg-sunglow">
+                    <th scope="col" class="text-center">Doctor Name</th>
+                    <th scope="col" class="text-right">Date</th>
+                    <th scope="col" class="text-right">Time</th>
+                    <th scope="col" class="text-right">Mode</th>
+                    <th scope="col" class="text-right">Meeting Link (if any)</th>
+                    <th scope="col" class="text-right"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let appointment of appointments){ %>
+                    <tr>
+                        <td><%= "Dr. " + appointment.doctor.firstName + " " + appointment.doctor.lastName %></td>
+                        <td class="text-right"><%= appointment.date %></td>
+                        <td class="text-right"><%= appointment.time %></td>
+                        <td class="text-right"><%= appointment.isOnline ? "Online" : "Offline" %></td>
+                        <td class="text-right">
+                            <% if(appointment.isOnline){ %>
+                                <a href="<%= appointment.meetingLink %>" class="btn bg-teal">Join Meeting</a>
+                            <% } %>  
+                        </td>
+                        <td><a href="/appointments/delete/<%= appointment._id %>" class="btn btn-sm"><i class="far fa-trash-alt"></i></a></td>
+                    </tr>
+                <% } %> 
+            </tbody>
+        </table>        
+    </div>
+    <div class="container">
+        <div class="mb-4">
+            <h5 class="display-4" style="font-size: 2rem;"><strong>My Orders </strong></h5>
+            <hr>
+        </div>
+        <% for(let order of orders){ %>
+            <table class="table table-hover">
+                <h6 class="display-4" style="font-size: 1.5rem;"><strong>Order #<%= order._id %>  </strong></h6>
+                <thead>
+                    <tr class="bg-sunglow">
+                        <th scope="col" class="text-center">Product</th>
+                        <th scope="col" class="text-right">Quantity</th>
+                        <th scope="col" class="text-right">Price</th>
+                        <th scope="col" class="text-right"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(let product of order.items){ %> 
+                        <tr>
+                            <td><%= product.item.title %></td>
+                            <td class="text-right"><%= product.qty %></td>
+                            <td class="text-right"><i class="fa fa-inr fa-sm" aria-hidden="true"></i> <%= product.price %></td>
+                            <td></td>
+                        </tr>
+                    <% } %>
+                    <tr>
+                        <td></td>
+                        <td class="text-right"><strong>Total</strong></td>
+                        <td class="text-right"><strong><i class="fa fa-inr fa-sm" aria-hidden="true"></i> <%= order.cart.totalPrice %></strong></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        <% } %>         
+        
+    </div>
+      
+
+    
+</div>
+

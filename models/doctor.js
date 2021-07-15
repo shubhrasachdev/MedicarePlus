@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+
 doctorSchema = new Schema({
     firstName: String, 
     lastName: String,
@@ -11,13 +12,7 @@ doctorSchema = new Schema({
     zipCode: Number,
     speciality: String,
     yoe: Number,
-    rating: Number,
-    appointments: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Appointment'
-        }
-    ]
+    rating: Number
 });
 
 const Doctor = mongoose.model('Doctor', doctorSchema);
