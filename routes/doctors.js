@@ -157,9 +157,9 @@ router.post('/:id/newConsult', async (req, res) => {
         text: emailString
     };
       
-    await transporter.sendMail(mailOptions, function(error, info){
+    await transporter.sendMail(mailOptions, function(err, info){
         if (err) {
-          console.log(error);
+          console.log(err);
         } else {
            console.log('Email sent: ' + info.response);
         }
